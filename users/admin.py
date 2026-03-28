@@ -14,4 +14,3 @@ class PaymentAdmin(admin.ModelAdmin):
     list_display = ("id", "payer", "amount", "type", "payment_date")
     list_filter = ("type", "payment_date")
     search_fields = ("payer__email",)
-
