@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 NULLABLE = dict(null=True, blank=True)
 
@@ -19,6 +20,13 @@ class Course(models.Model):
         **NULLABLE,
         verbose_name="Описание курса",
         help_text="Укажите описание курса",
+    )
+    owner = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        **NULLABLE,
+        verbose_name="Владелец",
+        related_name="courses",
     )
 
     class Meta:
@@ -56,6 +64,13 @@ class Lesson(models.Model):
         **NULLABLE,
         verbose_name="Ссылка на видео",
         help_text="Укажите ссылку на видео",
+    )
+    owner = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        **NULLABLE,
+        verbose_name="Владелец",
+        related_name="lessons",
     )
 
     class Meta:
